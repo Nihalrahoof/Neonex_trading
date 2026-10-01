@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     if (nav) nav.classList.toggle('scrolled', y > 60);
-    if (backTop) backTop.classList.toggle('visible', y > 500);
+    if (backTop) backTop.classList.toggle('visible', y > 800);
   });
 
   if (backTop) {
