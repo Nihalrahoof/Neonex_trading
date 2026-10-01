@@ -52,6 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   reveals.forEach(el => revealObserver.observe(el));
 
+  // Immediate entrance cascade for Hero elements
+  setTimeout(() => {
+    document.querySelectorAll('.hero .reveal').forEach(el => {
+      el.classList.add('visible');
+    });
+  }, 80);
+
   // ===== COUNTERS =====
   const counters = document.querySelectorAll('[data-count]');
   const countObserver = new IntersectionObserver((entries) => {
@@ -64,6 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.5 });
 
   counters.forEach(c => countObserver.observe(c));
+
+  // Trigger hero telemetry counters immediately on page load
+  setTimeout(() => {
+    document.querySelectorAll('.hero [data-count]').forEach(c => {
+      if (!c.dataset.done) {
+        c.dataset.done = '1';
+        animateCount(c);
+      }
+    });
+  }, 400);
 
   function animateCount(el) {
     const target = parseInt(el.dataset.count);
